@@ -3,27 +3,33 @@ using Academy.Core.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.UnitTests.Core.EngineTests
 {
     [TestClass]
+
     public class Constructor_Should
     {
+        private Mock<IReader> readerMock;
+        private Mock<IWriter> writerMock;
+        private Mock<IParser> parserMock;
+        private Mock<IInMemoryDatabase> databaseMock;
+
+        [TestInitialize]
+        public void InitializeMocks()
+        {
+            this.readerMock = new Mock<IReader>();
+            this.writerMock = new Mock<IWriter>();
+            this.parserMock = new Mock<IParser>();
+            this.databaseMock = new Mock<IInMemoryDatabase>();
+        }
         [TestMethod]
+
         public void CreateAnObjectSuccessfuly_WhenParametersAreCorrect()
         {
             //Arrange
-            var readerMock = new Mock<IReader>();
-            var writerMock = new Mock<IWriter>();
-            var parserMock = new Mock<IParser>();
-            var databaseMock = new Mock<IInMemoryDatabase>();
-
             //Act
-            var engine = new Engine(readerMock.Object, writerMock.Object, parserMock.Object, databaseMock.Object);
+            var engine = new Engine(this.readerMock.Object, this.writerMock.Object, this.parserMock.Object, this.databaseMock.Object);
 
             //Assert
             Assert.IsNotNull(engine);
@@ -33,56 +39,44 @@ namespace Academy.UnitTests.Core.EngineTests
         public void ThrowsArgumentNullException_WhenReaderIsNull()
         {
             //Arrange
-            IReader readerMock = null;
-            var writerMock = new Mock<IWriter>();
-            var parserMock = new Mock<IParser>();
-            var databaseMock = new Mock<IInMemoryDatabase>();
+            IReader reader = null;
 
             //Act & Assert
             Assert.ThrowsException<ArgumentNullException>(
-                () => new Engine(readerMock, writerMock.Object, parserMock.Object, databaseMock.Object));
+                () => new Engine(reader, this.writerMock.Object, this.parserMock.Object, this.databaseMock.Object));
         }
 
         [TestMethod]
         public void ThrowsArgumentNullException_WhenWriterIsNull()
         {
-            //Arrange
-            var readerMock = new Mock<IReader>();
-            IWriter writerMock = null;
-            var parserMock = new Mock<IParser>();
-            var databaseMock = new Mock<IInMemoryDatabase>();
+            //Arrange           
+            IWriter writer = null;
 
             //Act & Assert
             Assert.ThrowsException<ArgumentNullException>(
-                () => new Engine(readerMock.Object, writerMock, parserMock.Object, databaseMock.Object));
+                () => new Engine(this.readerMock.Object, writer, this.parserMock.Object, this.databaseMock.Object));
         }
 
         [TestMethod]
         public void ThrowsArgumentNullException_WhenParserIsNull()
         {
             //Arrange
-            var readerMock = new Mock<IReader>();
-            var writerMock = new Mock<IWriter>();
-            IParser parserMock = null;
-            var databaseMock = new Mock<IInMemoryDatabase>();
+            IParser parser = null;
 
             //Act & Assert
             Assert.ThrowsException<ArgumentNullException>(
-                () => new Engine(readerMock.Object, writerMock.Object, parserMock, databaseMock.Object));
+                () => new Engine(this.readerMock.Object, this.writerMock.Object, parser, this.databaseMock.Object));
         }
 
         [TestMethod]
         public void ThrowsArgumentNullException_WhenDatabaseIsNull()
         {
             //Arrange
-            var readerMock = new Mock<IReader>();
-            var writerMock = new Mock<IWriter>();
-            var parserMock = new Mock<IParser>();
-            IInMemoryDatabase databaseMock = null;
+            IInMemoryDatabase database = null;
 
             //Act & Assert
             Assert.ThrowsException<ArgumentNullException>(
-                () => new Engine(readerMock.Object, writerMock.Object, parserMock.Object, databaseMock));
+                () => new Engine(this.readerMock.Object, this.writerMock.Object, this.parserMock.Object, database));
         }
     }
 }

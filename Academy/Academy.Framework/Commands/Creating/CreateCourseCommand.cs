@@ -1,6 +1,7 @@
 ﻿using Academy.Commands.Contracts;
 using Academy.Core.Contracts;
 using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 
 namespace Academy.Commands.Creating
@@ -21,6 +22,10 @@ namespace Academy.Commands.Creating
 
         public string Execute(IList<string> parameters)
         {
+            if(parameters.Count > 4)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
             var seasonId = parameters[0];
             var name = parameters[1];
             var lecturesPerWeek = parameters[2];
