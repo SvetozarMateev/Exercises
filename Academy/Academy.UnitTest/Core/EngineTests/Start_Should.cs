@@ -65,7 +65,7 @@ namespace Academy.Core.Tests
             var commandMock = new Mock<ICommand>();
             var randomCommand = "CreateSeason 2016 2017 SoftwareAcademy";
             var inputParameters = randomCommand.Split(' ').ToList();
-            var executionMessage = "Season with ID 0 was created.";
+            var executionMessage = "Execution message";
 
             commandMock.Setup(x => x.Execute(inputParameters)).Returns(executionMessage);
             this.readerMock.SetupSequence(x => x.ReadLine()).Returns(randomCommand).Returns(exitCommand);

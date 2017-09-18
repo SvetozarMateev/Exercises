@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Commands\Creating\CreateCourseCommandTests\Constructor_Should.cs" />
     <Compile Include="Commands\Creating\CreateCourseCommandTests\Execute_Should.cs" />
+    <Compile Include="Commands\Listing\ListUsersInSeasonCommandTests\Constructor_Should.cs" />
+    <Compile Include="Commands\Listing\ListUsersInSeasonCommandTests\Execute_Should.cs" />
     <Compile Include="Core\EngineTests\Constructor_Should.cs" />
     <Compile Include="Core\EngineTests\Start_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

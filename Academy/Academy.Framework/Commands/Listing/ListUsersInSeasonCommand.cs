@@ -1,5 +1,6 @@
 ﻿using Academy.Commands.Contracts;
 using Academy.Core.Contracts;
+using Bytes2you.Validation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,9 @@ namespace Academy.Commands.Listing
 
         public ListUsersInSeasonCommand(IAcademyFactory factory, IEngine engine)
         {
+            Guard.WhenArgument(factory, "factory").IsNull().Throw();
+            Guard.WhenArgument(engine, "engine").IsNull().Throw();
+
             this.factory = factory;
             this.engine = engine;
         }

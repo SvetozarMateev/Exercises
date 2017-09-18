@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Academy.UnitTests.Commands.Creating.CreateCourseCommandTests
 {
@@ -83,6 +84,7 @@ namespace Academy.UnitTests.Commands.Creating.CreateCourseCommandTests
 
             //Assert
             Assert.AreEqual(expectedResult, this.seasonZeroMock.Object.Courses.Count);
+            Assert.AreSame(this.courseMock.Object, this.seasonZeroMock.Object.Courses.Single());
         }
 
         [TestMethod]       
@@ -90,22 +92,6 @@ namespace Academy.UnitTests.Commands.Creating.CreateCourseCommandTests
         {
             //Arrange
             var testParameters = new List<string>();
-
-            //Act & Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => commandMock.Execute(testParameters));
-        }
-
-        [TestMethod]
-        public void ThrowsArgumentOutOfRangeException_WhenParametersAreMoteThanExpected()
-        {
-            //Arrange
-            var testParameters = new List<string>() {
-            It.IsAny<string>(),
-            It.IsAny<string>(),
-            It.IsAny<string>(),
-            It.IsAny<string>(),
-            It.IsAny<string>()           
-            };
 
             //Act & Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => commandMock.Execute(testParameters));
