@@ -68,10 +68,6 @@
       <Project>{5e95112a-2a9e-442b-8e65-7fc30f5d661a}</Project>
       <Name>Academy.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Academy.Start\Academy.Start.csproj">
-      <Project>{a45b76fe-9e54-45ed-a8a1-4641b62c84a5}</Project>
-      <Name>Academy.Start</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

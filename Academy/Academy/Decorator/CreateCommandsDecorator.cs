@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Academy.DevEnvironment.Decorator
+namespace Academy.Decorator
 {
     public class CreateCommandsDecorator : ICommand
     {

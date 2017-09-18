@@ -6,7 +6,7 @@ using Academy.Core;
 using Academy.Core.Contracts;
 using Academy.Core.Factories;
 using Academy.Core.Providers;
-using Academy.DevEnvironment.Decorator;
+using Academy.Decorator;
 using Ninject;
 using Ninject.Modules;
 using System.Configuration;
