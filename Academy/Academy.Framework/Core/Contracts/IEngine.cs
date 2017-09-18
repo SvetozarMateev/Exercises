@@ -1,5 +1,4 @@
-﻿using Academy.Models.Contracts;
-using System.Collections.Generic;
+﻿using Academy.Framework.Core.Contracts;
 
 namespace Academy.Core.Contracts
 {
@@ -7,6 +6,6 @@ namespace Academy.Core.Contracts
     {
         void Start();
 
-        IInMemoryDatabase Database { get; }
+        IDatabase Database { get; }
     }
 }

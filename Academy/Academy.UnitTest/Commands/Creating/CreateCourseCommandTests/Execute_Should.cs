@@ -104,9 +104,7 @@ namespace Academy.UnitTests.Commands.Creating.CreateCourseCommandTests
             It.IsAny<string>(),
             It.IsAny<string>(),
             It.IsAny<string>(),
-            It.IsAny<string>(),
-            It.IsAny<string>(),
-            It.IsAny<string>()
+            It.IsAny<string>()           
             };
 
             //Act & Assert

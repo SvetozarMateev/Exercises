@@ -1,4 +1,5 @@
 ﻿using Academy.Core.Contracts;
+using Academy.Framework.Core.Contracts;
 using Bytes2you.Validation;
 using System;
 using System.Text;
@@ -13,9 +14,9 @@ namespace Academy.Core
         private readonly IReader reader;
         private readonly IWriter writer;
         private readonly IParser parser;
-        private readonly IInMemoryDatabase database;
+        private readonly IDatabase database;
 
-        public Engine(IReader reader, IWriter writer, IParser parser, IInMemoryDatabase database)
+        public Engine(IReader reader, IWriter writer, IParser parser, IDatabase database)
         {
             Guard.WhenArgument(reader, "reader").IsNull().Throw();
             Guard.WhenArgument(writer, "writer").IsNull().Throw();
@@ -27,7 +28,7 @@ namespace Academy.Core
             this.parser = parser;
             this.database = database;
         }
-        public IInMemoryDatabase Database
+        public IDatabase Database
         {
             get
             {

@@ -9,15 +9,21 @@ namespace Academy.UnitTests.Commands.Creating.CreateCourseCommandTests
     [TestClass]
     public class Constructor_Should
     {
+        private Mock<IAcademyFactory> factoryMock;
+        private Mock<IEngine> engineMock;
+
+        [TestInitialize]
+        public void InitializeMocks()
+        {
+            this.factoryMock = new Mock<IAcademyFactory>();
+            this.engineMock = new Mock<IEngine>();
+        }
         [TestMethod]
         public void ReturnACommandWhichIsNotNull_WhenParametersAreCorrect()
         {
             //Arrange
-            var factoryMock = new Mock<IAcademyFactory>();
-            var engineMock = new Mock<IEngine>();
-
             //Act
-            var command = new CreateCourseCommand(factoryMock.Object, engineMock.Object);
+            var command = new CreateCourseCommand(this.factoryMock.Object, this.engineMock.Object);
 
             //Assert
             Assert.IsNotNull(command);
@@ -27,22 +33,20 @@ namespace Academy.UnitTests.Commands.Creating.CreateCourseCommandTests
         public void ThrowAnArgumentNullException_WhenFactoryIsNull()
         {
             //Arrange
-            IAcademyFactory factoryMock = null;
-            var engineMock = new Mock<IEngine>();
+            IAcademyFactory factory = null;
 
             //Act&Assert
-            Assert.ThrowsException<ArgumentNullException>(()=>new CreateCourseCommand(factoryMock, engineMock.Object));
+            Assert.ThrowsException<ArgumentNullException>(() => new CreateCourseCommand(factory, this.engineMock.Object));
         }
 
         [TestMethod]
         public void ThrowAnArgumentNullException_WhenEngineIsNull()
         {
             //Arrange
-            var factoryMock = new Mock<IAcademyFactory>(); ;
-            IEngine engineMock =null;
+            IEngine engine = null;
 
             //Act&Assert
-            Assert.ThrowsException<ArgumentNullException>(() => new CreateCourseCommand(factoryMock.Object, engineMock));
+            Assert.ThrowsException<ArgumentNullException>(() => new CreateCourseCommand(this.factoryMock.Object, engine));
         }
     }
 }

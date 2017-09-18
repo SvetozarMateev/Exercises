@@ -1,5 +1,6 @@
 ﻿using Academy.Core;
 using Academy.Core.Contracts;
+using Academy.Framework.Core.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -13,7 +14,7 @@ namespace Academy.UnitTests.Core.EngineTests
         private Mock<IReader> readerMock;
         private Mock<IWriter> writerMock;
         private Mock<IParser> parserMock;
-        private Mock<IInMemoryDatabase> databaseMock;
+        private Mock<IDatabase> databaseMock;
 
         [TestInitialize]
         public void InitializeMocks()
@@ -21,7 +22,7 @@ namespace Academy.UnitTests.Core.EngineTests
             this.readerMock = new Mock<IReader>();
             this.writerMock = new Mock<IWriter>();
             this.parserMock = new Mock<IParser>();
-            this.databaseMock = new Mock<IInMemoryDatabase>();
+            this.databaseMock = new Mock<IDatabase>();
         }
         [TestMethod]
 
@@ -72,7 +73,7 @@ namespace Academy.UnitTests.Core.EngineTests
         public void ThrowsArgumentNullException_WhenDatabaseIsNull()
         {
             //Arrange
-            IInMemoryDatabase database = null;
+            IDatabase database = null;
 
             //Act & Assert
             Assert.ThrowsException<ArgumentNullException>(

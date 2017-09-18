@@ -1,10 +1,10 @@
-﻿using Academy.Core.Contracts;
+﻿using Academy.Framework.Core.Contracts;
 using Academy.Models.Contracts;
 using System.Collections.Generic;
 
 namespace Academy.Core.Providers
 {
-    public class InMemoryDatabase : IInMemoryDatabase
+    public class InMemoryDatabase : IDatabase
     {
         private readonly IList<ISeason> seasons;
         private readonly IList<IStudent> students;

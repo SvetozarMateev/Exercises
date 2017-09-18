@@ -7,6 +7,7 @@ using Academy.Core.Contracts;
 using Academy.Core.Factories;
 using Academy.Core.Providers;
 using Academy.Decorator;
+using Academy.Framework.Core.Contracts;
 using Ninject;
 using Ninject.Modules;
 using System.Configuration;
@@ -22,7 +23,7 @@ namespace Academy.Ninject
             this.Bind<IReader>().To<ConsoleReader>();
             this.Bind<IWriter>().To<ConsoleWriter>();
             this.Bind<IParser>().To<CommandParser>();
-            this.Bind<IInMemoryDatabase>().To<InMemoryDatabase>().InSingletonScope();
+            this.Bind<IDatabase>().To<InMemoryDatabase>().InSingletonScope();
 
             this.Bind<IAcademyFactory>().To<AcademyFactory>().InSingletonScope();
             this.Bind<ICommandFactory>().To<CommandFactory>().InSingletonScope();
@@ -56,7 +57,6 @@ namespace Academy.Ninject
             }
             else
             {
-
                 this.Bind<ICommand>().To<CreateCourseCommand>().Named("CreateCourse");
                 this.Bind<ICommand>().To<CreateCourseResultCommand>().Named("CreateCourseResult");
                 this.Bind<ICommand>().To<CreateLectureCommand>().Named("CreateLecture");
@@ -64,6 +64,7 @@ namespace Academy.Ninject
                 this.Bind<ICommand>().To<CreateStudentCommand>().Named("CreateStudent");
                 this.Bind<ICommand>().To<CreateTrainerCommand>().Named("CreateTrainer");
             }
+
             this.Bind<ICommand>().To<ListCoursesInSeasonCommand>().Named("ListCoursesInSeason");
             this.Bind<ICommand>().To<ListUsersCommand>().Named("ListUsers");
             this.Bind<ICommand>().To<ListUsersInSeasonCommand>().Named("ListUsersInSeason");

@@ -1,5 +1,6 @@
 ﻿using Academy.Commands.Contracts;
 using Academy.Core.Contracts;
+using Academy.Framework.Core.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -15,7 +16,7 @@ namespace Academy.Core.Tests
         private Mock<IReader> readerMock;
         private Mock<IWriter> writerMock;
         private Mock<IParser> parserMock;
-        private Mock<IInMemoryDatabase> databaseMock;
+        private Mock<IDatabase> databaseMock;
         private StringBuilder builder;
         private IEngine engine;
         [TestInitialize]
@@ -24,7 +25,7 @@ namespace Academy.Core.Tests
             this.readerMock = new Mock<IReader>();
             this.writerMock = new Mock<IWriter>();
             this.parserMock = new Mock<IParser>();
-            this.databaseMock = new Mock<IInMemoryDatabase>();
+            this.databaseMock = new Mock<IDatabase>();
             this.builder = new StringBuilder();
             this.engine = new Engine(readerMock.Object, writerMock.Object, parserMock.Object, databaseMock.Object);
         }
@@ -32,8 +33,9 @@ namespace Academy.Core.Tests
         public void WriteACustomExceptionMessage_WhenArgumentOutOfRangeExceptionIsThrown()
         {
             //Arrange
+            var expectedCustomException = "Invalid command parameters supplied or the entity with that ID for does not exist.";
             this.readerMock.SetupSequence(x => x.ReadLine()).Throws<ArgumentOutOfRangeException>().Returns(exitCommand);          
-            this.builder.AppendLine("Invalid command parameters supplied or the entity with that ID for does not exist.");
+            this.builder.AppendLine(expectedCustomException);
 
             //Act
            this.engine.Start();

@@ -16,11 +16,14 @@ namespace Academy.Decorator
         }
         public string Execute(IList<string> parameters)
         {
-            return string.Concat($"-->Command is called at: {DateTime.Now}",
+            var started = $"-->Command is called at: {DateTime.Now}";
+            var result = command.Execute(parameters);
+            var ended = $"-->Command has finished at: {DateTime.Now}";
+            return string.Concat(started,
                 Environment.NewLine,
-                command.Execute(parameters),
-                Environment.NewLine, 
-                $"-->Command has finished at: {DateTime.Now}");
+                result,
+                Environment.NewLine,
+                ended);
         }
     }
 }
